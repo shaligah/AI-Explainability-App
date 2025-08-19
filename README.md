@@ -43,8 +43,8 @@ This one is built for **transparency + communication**.
 
 ---
 ## 🔗 Live App
-[![Open in Streamlit](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://appapppy-4wxlqsvv4yappmatfkrwgqu.streamlit.app/)
-- For batch predictions and explanations in the app use the test dataset. Happy exploring!!!
+[![Open in Streamlit](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://ai-explainability-app.streamlit.app/)
+- Just upload a somewhat cleaned dataset(**app handles missing, encoding, multicollinearity**) and see the magic happen.  Happy exploring!!!
 ---
 ## 👩‍💻 Built by a Data Scientist — for Everyone
 
