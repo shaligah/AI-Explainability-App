@@ -427,7 +427,7 @@ elif st.session_state.section=='Preprocessing':
             st.info("ℹ️ No categorical variables to encode.")
         
         if st.session_state.task == 'classification':
-            if y.dtype == 'object' or y.dtype.name == 'category':
+            if y.dtype == 'object' or y.dtype.name == 'category' or y.dtype.name == 'bool':
                 num_classes = y.nunique()
 
                 if num_classes == 2:
@@ -814,6 +814,7 @@ if clear:
     # Reset to home
     st.session_state.section = "-"
     st.rerun()
+
 
 
 
