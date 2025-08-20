@@ -542,7 +542,7 @@ elif st.session_state.section == 'Explainability':
         fig = px.bar(st.session_state.importance_df.head(20), x='Importance', y='Feature', orientation='h', title='Top 20 Feature Importances')
         st.plotly_chart(fig, use_container_width=True)
         st.session_state.buf1 = BytesIO()
-        pio.write_image(fig, st.session_state.buf1, format='png')
+        fig.savefig(st.session_state.buf1, format='png')
         st.session_state.buf1.seek(0)
     
     elif explain_mode=='Local Explanation (SHAP)': 
@@ -811,3 +811,4 @@ if clear:
     # Reset to home
     st.session_state.section = "-"
     st.rerun()
+
