@@ -139,7 +139,7 @@ def training(X,y, task, random_state=42):
     
     #choosing the model
     if task =='classification':
-        model = xgt.XGBClassifier(use_label_encoder=False, eval_metric='logloss', random_state=random_state)
+        model = xgt.XGBClassifier(eval_metric='logloss', random_state=random_state)
         scoring = 'f1' if pd.Series(y).nunique()==2 else 'accuracy'
         params = {
             'n_estimators': [50, 100, 200],
@@ -813,6 +813,7 @@ if clear:
     # Reset to home
     st.session_state.section = "-"
     st.rerun()
+
 
 
 
