@@ -407,6 +407,7 @@ elif st.session_state.section=='Preprocessing':
             st.markdown(f"**Rows** {st.session_state.cleaned_data.shape[0]} | **Columns** {st.session_state.cleaned_data.shape[1]}")
     else:
         st.success("No missing values to clean!")
+        st.session_state.cleaned_data= df
         
     y = st.session_state.cleaned_data[st.session_state.target]
     X = st.session_state.cleaned_data.drop(columns =st.session_state.target)
@@ -813,6 +814,7 @@ if clear:
     # Reset to home
     st.session_state.section = "-"
     st.rerun()
+
 
 
 
