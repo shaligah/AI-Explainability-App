@@ -541,9 +541,8 @@ elif st.session_state.section == 'Explainability':
 
         fig = px.bar(st.session_state.importance_df.head(20), x='Importance', y='Feature', orientation='h', title='Top 20 Feature Importances')
         st.plotly_chart(fig, use_container_width=True)
-        st.session_state.buf1 = BytesIO()
-        fig.savefig(st.session_state.buf1, format='png')
-        st.session_state.buf1.seek(0)
+        plotly_html = pio.to_html(fig, full_html=False, include_plotlyjs='cdn')
+        st.session_state.importance_html = plotly_html
     
     elif explain_mode=='Local Explanation (SHAP)': 
         prediction2 = st.session_state.model.predict(st.session_state.xtest)
@@ -728,7 +727,7 @@ elif st.session_state.section == 'Generate AI Summary':
             if st.button('View summary'):
                 st.session_state.summary
                 
-    def generate_report_html(summary, metrics_dict, shap_images, include_summary=True):
+    def generate_report_html(summary, metrics_dict, global_image,shap_images, include_summary=True):
         html = """
         <html>
         <head>
@@ -770,6 +769,10 @@ elif st.session_state.section == 'Generate AI Summary':
             html += f"<tr><td>{key}</td><td>{value}</td></tr>"
         html += "</table></div>"
 
+        # Global images
+        html += "<div class='section'><h2>📊 Global Feature Importance</h2>"
+        html += global_image  # injects interactive chart
+        html += "</div>"
         # SHAP images
         html += "<div class='section'><h2>🔍 SHAP Interpretations</h2>"
         for title, image_bytes in shap_images.items():
@@ -789,7 +792,7 @@ elif st.session_state.section == 'Generate AI Summary':
         "💧 SHAP Waterfall (Instance 2)": st.session_state.buf3,
     }
     # Example usage
-    html_report = generate_report_html(summary, st.session_state.metrics, images)
+    html_report = generate_report_html(summary, st.session_state.metrics,st.session_state.importance_html images)
     st.download_button(
         label="📥 Download HTML Report",
         data=html_report.encode("utf-8"),
@@ -811,4 +814,5 @@ if clear:
     # Reset to home
     st.session_state.section = "-"
     st.rerun()
+
 
