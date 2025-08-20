@@ -787,12 +787,11 @@ elif st.session_state.section == 'Generate AI Summary':
     include_summary = bool(summary.strip())
 
     images = {
-        "🌐 Global Feature Importance": st.session_state.buf1,
         "💧 SHAP Waterfall (Instance 1)": st.session_state.buf2,
         "💧 SHAP Waterfall (Instance 2)": st.session_state.buf3,
     }
     # Example usage
-    html_report = generate_report_html(summary, st.session_state.metrics,st.session_state.importance_html images)
+    html_report = generate_report_html(summary, st.session_state['metrics'],st.session_state['importance_html'], images)
     st.download_button(
         label="📥 Download HTML Report",
         data=html_report.encode("utf-8"),
@@ -814,5 +813,6 @@ if clear:
     # Reset to home
     st.session_state.section = "-"
     st.rerun()
+
 
 
