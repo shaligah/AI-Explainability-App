@@ -293,6 +293,8 @@ if st.session_state.section == '-':
 
     ---
     """)
+    st.warning('⚠️ While the model is great at handling missing files, encoding categorical variables and handling multicollinearity, obtaining the best results boils down to the accuracy of the dataset being uploaded')
+               
     if st.button('Lets Begin'):
         with st.spinner("..."):
             st.session_state.section = 'Tasking'
@@ -814,6 +816,7 @@ if clear:
     # Reset to home
     st.session_state.section = "-"
     st.rerun()
+
 
 
 
