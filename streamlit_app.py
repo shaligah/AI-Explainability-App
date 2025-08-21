@@ -519,7 +519,7 @@ elif st.session_state.section == 'Model_Training':
     
     if st.button('Lets explain the results'):
         st.session_state.section = 'Explainability'
-        st.rerun()
+        
 
 elif st.session_state.section == 'Explainability':
     st.header("🔍 Model Explainability")
@@ -816,6 +816,7 @@ if clear:
     # Reset to home
     st.session_state.section = "-"
     st.rerun()
+
 
 
 
